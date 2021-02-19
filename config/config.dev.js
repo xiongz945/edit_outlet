@@ -12,4 +12,11 @@ export default defineConfig({
     babelPlugins: [],
     babelOptions: {},
   },
+  locale: {
+    // default en-US
+    default: 'en-US',
+    antd: true,
+    // default true, when it is true, will use `navigator.language` overwrite default
+    baseNavigator: true,
+  },
 });
