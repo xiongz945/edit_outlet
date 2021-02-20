@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Row, Col } from 'antd';
+import { Input, Row, Col, Form } from 'antd';
 
 
 const BasicInfoForm = () => {
@@ -7,22 +7,26 @@ const BasicInfoForm = () => {
         <div>
             <Row>
                 <Col>
-                    <label htmlFor="brand-name">Brand Name</label>
-                    <Input id="brand-name" placeholder="Brand Name" />
+                    <Form.Item name="brand-name" label="Brand Name" rules={[{required: true}]}>
+                        <Input id="brand-name" placeholder="Brand Name" />
+                    </Form.Item>
                 </Col>
                 <Col>
-                    <label htmlFor="outlet-name">Outlet Name</label>
-                    <Input id="outlet-name" placeholder="Outlet Name"/>
+                    <Form.Item name="outlet-name" label="Outlet Name" rules={[{required: true}]}>
+                        <Input placeholder="Outlet Name"/>
+                    </Form.Item>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <label htmlFor="address">Address</label>
-                    <Input id="address" placeholder="Address" />
+                    <Form.Item name="address" label="Address" rules={[{required: true}]}>
+                        <Input placeholder="Address" />
+                    </Form.Item>
                 </Col>
                 <Col>
-                    <label htmlFor="phone-number">Phone Number</label>
-                    <Input id="phone-number" placeholder="Phone Number"/>
+                    <Form.Item name="phone-number" label="Phone Number" rules={[{required: true}]}>
+                        <Input placeholder="Phone Number"/>
+                    </Form.Item>
                 </Col>
             </Row>
         </div>

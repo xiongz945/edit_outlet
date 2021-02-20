@@ -1,34 +1,41 @@
 import React, {useState} from 'react';
-import { Row, Col, Checkbox, Divider } from 'antd';
+import { Row, Col, Checkbox, Divider, Form } from 'antd';
 
-const options = ['Dine-in', 'Delivery', 'Takeout'];
 
-const ServiceOptions = () => {
-    const [checkedList, setCheckedList] = useState([]);
-    const [checkAll, setCheckAll] = useState(false);
+const ServiceOptions = ({form, options}) => {
+    // const [checkedList, setCheckedList] = useState([]);
+    // const [checkAll, setCheckAll] = useState(false);
 
-    const onChange = list => {
-        setCheckedList(list);
-        setCheckAll(list.length === options.length);
-    };
-    const onCheckAllChange = e => {
-        setCheckedList(e.target.checked ? options : []);
-        setCheckAll(e.target.checked);
-    };
+    // const onChange = list => {
+    //     setCheckedList(list);
+    //     setCheckAll(list.length === options.length);
+    // };
+    // const onCheckAllChange = e => {
+    //     setCheckedList(e.target.checked ? options : []);
+    //     setCheckAll(e.target.checked);
+    // };
+
 
     return (
-        <Row>
+        <>
             <Row>Service Options</Row>
             <Divider />
+            <Form.Item>
             <Row>
                 <Col>
-                    <Checkbox checked={checkAll} onChange={onCheckAllChange}>All</Checkbox>
+                    <Form.Item name={["service-options", "all"]} valuePropName="checked" noStyle>
+                        <Checkbox>All</Checkbox>
+                    </Form.Item>
                 </Col>
                 <Col>
-                    <Checkbox.Group options={options} value={checkedList} onChange={onChange}/>
+                    <Form.Item name={["service-options", "others"]} rules={[{required: true, message: "Please select service options"}]} noStyle>
+                        <Checkbox.Group options={options} />
+                    </Form.Item>
                 </Col>
             </Row>
-        </Row>
+            </Form.Item>
+
+        </>
     )
 };
 

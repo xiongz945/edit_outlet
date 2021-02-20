@@ -16,8 +16,14 @@ export default [
       // },
       {
         path: '/',
-        component: './Edit'
+        component: './Home',
       },
+      {
+        name: 'edit outlet',
+        path: '/edit',
+        component: './Edit',
+      },
+      
     ],
   },
   {

@@ -1,14 +1,13 @@
 import React from 'react';
-import { ConfigProvider, Row, Col, DatePicker, TimePicker, Switch, Button } from 'antd';
+import { Row, Col, DatePicker, TimePicker, Switch, Button } from 'antd';
 import  { PlusCircleOutlined, DownOutlined } from '@ant-design/icons';
-import enUS from 'antd/lib/locale/en_US';
 
 const SpecialTimeTable = (props) => {
     const { tabName } = props;
     const theOtherTab = tabName === "Dine-in" ? "delivery" : "dine-in";
     const format = "HH:mm";
     return (
-        <ConfigProvider locale={enUS}>
+        <div>
             <Row>
                 <Col>Copy hours data from the {theOtherTab}</Col>
                 <Switch />
@@ -30,7 +29,7 @@ const SpecialTimeTable = (props) => {
             <Row>
                 Show more <DownOutlined />
             </Row>
-        </ConfigProvider>
+        </div>
     );
 };
 
