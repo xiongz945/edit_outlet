@@ -23,6 +23,9 @@ export default [
         path: '/edit',
         component: './Edit',
       },
+      {
+        component: './404',
+      },
       
     ],
   },

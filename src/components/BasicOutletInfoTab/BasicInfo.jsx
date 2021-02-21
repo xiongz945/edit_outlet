@@ -25,7 +25,7 @@ const BasicInfoForm = () => {
                 </Col>
                 <Col>
                     <Form.Item name="phone-number" label="Phone Number" rules={[{required: true}]}>
-                        <Input placeholder="Phone Number"/>
+                        <Input placeholder="Phone Number" type="tel"/>
                     </Form.Item>
                 </Col>
             </Row>

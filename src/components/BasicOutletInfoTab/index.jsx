@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Button, Form } from 'antd';
-import { Link } from 'umi';
+import { Link, connect } from 'umi';
 import BasicInfo from './BasicInfo';
 import ConnectedPlatformsGroup from './ConnectedPlatformsGroup';
 import ServiceOptions from './ServiceOptions';
@@ -9,7 +9,7 @@ const options = ['Dine-in', 'Delivery', 'Takeout'];
 
 const onServiceOptionsChange = (changedFields, form) => {
     const { name, value } = changedFields[0];
-    if (name && name.includes("service-options") && name.includes("others")) {
+    if (name && name.includes("service-options") && name.includes("options")) {
         if (value === options) {
             form.setFieldsValue({ 'service-options':{all: true}} );
         }
@@ -18,18 +18,46 @@ const onServiceOptionsChange = (changedFields, form) => {
         }
     } else if (name && name.includes("service-options") && name.includes("all")) {
         if (value === true) {
-            form.setFieldsValue({ 'service-options':{others: options}} );
+            form.setFieldsValue({ 'service-options':{options: options}} );
         }
         else {
-            form.setFieldsValue({ 'service-options':{others: []}} );
+            form.setFieldsValue({ 'service-options':{options: []}} );
         }
     }
 }
 
-const BasicOutletInfoTab = () => {
+
+const BasicOutletInfoTab = (props) => {
     const [ form ] = Form.useForm();
+    const { outlet } = props;
+
+    const onSave = (values) => {
+        console.log('Success', values);
+        const { dispatch } = props;
+        dispatch({
+            type: 'outlet/saveOutlet',
+            payload: values
+        });
+    }
     return (
-        <Form form={form} layout="vertical" onFieldsChange={(changedFields,_) => onServiceOptionsChange(changedFields, form)}>
+        <Form 
+            form={form} 
+            layout="vertical"
+            initialValues={{
+                "brand-name": outlet.brandName,
+                "outlet-name": outlet.outletName,
+                "phone-number": outlet.phoneNumber,
+                "address": outlet.address,
+                "service-options": {
+                    "all": outlet.serviceOptions.all,
+                    "options": outlet.serviceOptions.options
+                }
+            }} 
+            onFieldsChange={
+                (changedFields,_) => onServiceOptionsChange(changedFields, form)
+            }
+            onFinish={onSave}
+        >
             <Row>
                 <BasicInfo />
             </Row>
@@ -55,4 +83,6 @@ const BasicOutletInfoTab = () => {
     )
 };
 
-export default BasicOutletInfoTab;
+export default connect(({ outlet }) => ({
+    outlet,
+}))(BasicOutletInfoTab);
