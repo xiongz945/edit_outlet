@@ -15,8 +15,8 @@ const SpecialTimeTable = (props) => {
             <Row>
                 <Col><DatePicker /></Col>
                 <Col><Switch />Open</Col>
-                <Col><TimePicker minuteStep={15} format={format} /></Col>
-                <Col>-<TimePicker minuteStep={15} format={format} /></Col>
+                <Col><TimePicker minuteStep={15} format={format} use12Hours /></Col>
+                <Col>-<TimePicker minuteStep={15} format={format} use12Hours /></Col>
                 <Button icon={<PlusCircleOutlined />}></Button>
             </Row>
             <Row>

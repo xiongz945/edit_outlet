@@ -1,3 +1,4 @@
+import { initialHours } from '../utils/constants';
 const OutletModel = {
     namespace: 'outlet',
     state: {
@@ -10,6 +11,10 @@ const OutletModel = {
             options: []
         },
         connectedPlatforms: [],
+        operatingHoursForDineIn: initialHours,
+        operatingHoursForDelivery: initialHours,
+        specialHoursForDineIn: {},
+        specialHoursForDelivery: {},
     },
     effects: {
         *fetchConnectedPlatforms(_, {call, put}) {

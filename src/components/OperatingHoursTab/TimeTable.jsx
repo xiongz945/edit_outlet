@@ -5,7 +5,7 @@ import  { PlusCircleOutlined, DownOutlined } from '@ant-design/icons';
 const TimeTable = (props) => {
     const { tabName } = props;
     const theOtherTab = tabName === "Dine-in" ? "delivery" : "dine-in";
-    const format = "HH:mm";
+    const format = "HH:mm A";
     return (
         <div>
             <Row>
@@ -15,8 +15,8 @@ const TimeTable = (props) => {
             <Row>
                 <Col>Monday</Col>
                 <Col><Switch />Open</Col>
-                <Col><TimePicker minuteStep={15} format={format} /></Col>
-                <Col>-<TimePicker minuteStep={15} format={format} /></Col>
+                <Col><TimePicker minuteStep={15} format={format} use12Hours /></Col>
+                <Col>-<TimePicker minuteStep={15} format={format} use12Hours /></Col>
                 <Button icon={<PlusCircleOutlined />}></Button>
             </Row>
             <Row>

@@ -4,13 +4,13 @@ import { Link, connect } from 'umi';
 import BasicInfo from './BasicInfo';
 import ConnectedPlatformsGroup from './ConnectedPlatformsGroup';
 import ServiceOptions from './ServiceOptions';
-
-const options = ['Dine-in', 'Delivery', 'Takeout'];
+import { options } from '../../utils/constants';
+// const options = ['Dine-in', 'Delivery', 'Takeout'];
 
 const onServiceOptionsChange = (changedFields, form) => {
     const { name, value } = changedFields[0];
     if (name && name.includes("service-options") && name.includes("options")) {
-        if (value === options) {
+        if (value.length === options.length) {
             form.setFieldsValue({ 'service-options':{all: true}} );
         }
         else {
