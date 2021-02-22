@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Row, Col, TimePicker, Switch, Button, Form } from 'antd';
 import  { PlusCircleOutlined, DeleteOutlined } from '@ant-design/icons';
 import moment from 'moment';
+import styles from './TimeEntry.less';
 
 const TimeEntry = (props) => {
     const format = "hh:mm A";
@@ -32,66 +33,60 @@ const TimeEntry = (props) => {
     }
 
     return (
-        <Form.Item>
+        <Form.Item style={{width: "100%"}}>
             <Form.List name={["operation", entry.day, hourType]}>
                 {(fields, { add, remove }) => {
                     return (
                     <>
                         {fields.map((field, index) => (
                             index === 0
-                            ? (<Row key={field.key}>
-                                <Col>{entry.day}</Col>
-                                <Col>
+                            ? (<Row key={field.key} style={{margin:"0"}} justify="start" align="middle" gutter={{md: 16, sm:0}}>
+                                <Col md={5} sm={12}>{entry.day}</Col>
+                                <Col md={3} sm={10}>
                                     <Form.Item
                                         {...field} 
                                         name={[field.name, "isopen"]}
                                         fieldKey={[field.fieldKey, "isopen"]}
-                                        valuePropName="checked" 
+                                        valuePropName="checked"
+                                        noStyle
                                     >
                                         <Switch onChange={value => onOpenSwitchChange(value)}/>
                                     </Form.Item>
-                                    </Col>
-                                    <Col>
+                                </Col>
+                                <Col md={2} sm={2}>
                                     {isOpen ? "Open" : "Closed"}
                                 </Col>
-                                <Col>
+                                <Col md={11} sm={22}>
                                     <Form.Item
                                         {...field} 
                                         name={[field.name, "range"]} 
                                         fieldKey={[field.fieldKey, "range"]}
                                         hidden={!isOpen}
+                                        noStyle
                                     >
-                                        <RangePicker minuteStep={15} format={format} allowClear={false} />
+                                        <RangePicker className={styles.rangePicker} minuteStep={15} format={format} allowClear={false} />
                                     </Form.Item>
                                 </Col>
-                                
-                                <Button icon={<PlusCircleOutlined />} onClick={()=>add()} hidden={!isOpen} />
+                                <Col md={2} sm={2}>
+                                    <Button className={styles.addBtn} icon={<PlusCircleOutlined style={{color: "#D84349"}} />} onClick={()=>add()} hidden={!isOpen} />
+                                </Col>
                             </Row>)
-                            : (<Row key={field.key}>
-                                    <Col></Col>
-                                    <Col></Col>
-                                    <Col>
+                            : (<Row style={{margin:"3% 0 3% 0"}} key={field.key} justify="start" align="middle" gutter={{md: 16, sm:0}}>
+                                    <Col md={10} sm={0}></Col>
+                                    <Col md={11} sm={22}>
                                         <Form.Item
                                             {...field} 
                                             name={[field.name, "range"]} 
                                             fieldKey={[field.fieldKey, "range"]}
                                             hidden={!isOpen}
+                                            noStyle
                                         >
-                                            <RangePicker minuteStep={15} format={format} allowClear={false} />
+                                            <RangePicker className={styles.rangePicker} minuteStep={15} format={format} allowClear={false} />
                                         </Form.Item>
                                     </Col>
-                                    {/* <Col>--</Col>
-                                    <Col>
-                                        <Form.Item
-                                            {...field} 
-                                            name={[field.name, "to"]} 
-                                            fieldKey={[field.fieldKey, "to"]}
-                                            preserve
-                                        >
-                                            <TimePicker minuteStep={15} format={format} use12Hours />
-                                        </Form.Item>
-                                    </Col> */}
-                                    <Button icon={<DeleteOutlined />} onClick={()=>remove(field.name)} hidden={!isOpen}/>
+                                    <Col md={2} sm={2}>
+                                        <Button className={styles.delBtn} icon={<DeleteOutlined style={{color: "#D84349"}} />} onClick={()=>remove(field.name)} hidden={!isOpen}/>
+                                    </Col>
                             </Row>)
                         )
                         )}
@@ -99,7 +94,7 @@ const TimeEntry = (props) => {
                     );}
                 }
             </Form.List>
-        </Form.Item >
+        </Form.Item>
     );
 };
 

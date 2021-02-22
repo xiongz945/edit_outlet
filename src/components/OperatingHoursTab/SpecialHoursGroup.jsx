@@ -53,34 +53,34 @@ const SpecialHoursGroup = (props) => {
   }, []);
 
   return (
-    <div>
+    <div style={{width: "100%"}}>
       <Row style={{fontWeight: "500"}}>Special Hours</Row>
       <Row>
-        <Tabs defaultActiveKey="1">
+        <Tabs defaultActiveKey="1" style={{width: "100%"}}>
           <TabPane tab="Dine-in" key="1">
-            <Row>
-                <Col>Copy hours data from the delivery</Col>
-                <Switch onChange={value => onCopyFromDeliverySwitch(value)}/>
+            <Row style={{margin:"2% 0 10% 0"}}>
+                <Col span={15}>Copy hours data from the delivery</Col>
+                <Col span={9}>
+                  <Switch onChange={value => onCopyFromDeliverySwitch(value)}/>
+                </Col>
             </Row>
             <Form.List name={["special", "dinein"]}>
               {(fields, { add, remove }) => (
                 <>
                   {fields.length > 0 ? null : <Row><Button icon={<PlusCircleOutlined />} onClick={()=>add()}>Add New Special Hours</Button></Row>}
                   {fields.map(field => (
-                    <Row key={field.key}>
-                      <Form.Item>
+                      <Form.Item key={field.key}>
                         <SpecialTimeEntry form={form} add={add} remove={remove} field={field}/>
                       </Form.Item>
-                    </Row>
                   ))}
                 </>
               )}
-            </Form.List>
+            </Form.List>         
           </TabPane>
           <TabPane tab="Delivery" key="2">
-            <Row>
-                <Col>Copy hours data from the dine-in</Col>
-                <Switch  onChange={value => onCopyFromDineInSwitch(value)} />
+            <Row style={{margin:"2% 0 10% 0"}}>
+                <Col span={15}>Copy hours data from the dine-in</Col>
+                <Col span={9}><Switch  onChange={value => onCopyFromDineInSwitch(value)} /></Col>   
             </Row>
             <Form.List name={["special", "delivery"]}>
               {(fields, { add, remove }) => (

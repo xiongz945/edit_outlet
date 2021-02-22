@@ -12,9 +12,11 @@ const OperationHoursGroup = (props) => {
       <Row>
         <Tabs defaultActiveKey="1">
           <TabPane tab="Dine-in" key="1">
-            <Row>
-                <Col>Copy hours data from the delivery</Col>
-                <Switch />
+            <Row style={{margin:"2% 0 10% 0"}}>
+                <Col span={15} >Copy hours data from the delivery</Col>
+                <Col span={9}>
+                  <Switch />
+                </Col>
             </Row>
             {dineInEntries.map(entry => (
               <Row key={entry.day}>
@@ -24,9 +26,9 @@ const OperationHoursGroup = (props) => {
 
           </TabPane>
           <TabPane tab="Delivery" key="2">
-            <Row>
-                <Col>Copy hours data from the dine-in</Col>
-                <Switch />
+            <Row style={{margin:"2% 0 10% 0"}}>
+                <Col span={15}>Copy hours data from the dine-in</Col>
+                <Col span={9}><Switch /></Col>
             </Row>
             {deliveryEntries.map(entry => (
               <Row key={entry.day}>

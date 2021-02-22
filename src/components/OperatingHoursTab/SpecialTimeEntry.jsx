@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, DatePicker, TimePicker, Switch, Button, Form } from 'antd';
 import  { PlusCircleOutlined, DeleteOutlined } from '@ant-design/icons';
+import styles from './SpecialTimeEntry.less';
 
 const SpecialTimeEntry = (props) => {
     const { add, remove, field, form } = props;
@@ -20,34 +21,35 @@ const SpecialTimeEntry = (props) => {
     }, []);
 
     return (
-        <div>
-            <Row>
-                <Col>
+            <Row style={{margin:"0"}} justify="start" align="middle" gutter={{md: 8, sm:0}}>
+                <Col md={5} sm={12}>
                     <Form.Item 
                         name={[field.name, "date"]}
                         rules={[{
                             required: true,
                             message: "Please select a date"
                         }]}
+                        noStyle
                     >
-                        <DatePicker />
+                        <DatePicker className={styles.datePicker} />
                     </Form.Item>
                 </Col>
-                <Col>
+                <Col md={3} sm={10}>
                     <Form.Item
                         {...field} 
                         name={[field.name, "isopen"]}
                         fieldKey={[field.fieldKey, "isopen"]}
                         valuePropName="checked"
-                        initialValue={true} 
+                        initialValue={true}
+                        noStyle 
                     >
                         <Switch onChange={value => onOpenSwitchChange(value)}/>
                     </Form.Item>
-                    </Col>
-                    <Col>
+                </Col>
+                <Col md={2} sm={2}>
                     {isOpen ? "Open" : "Closed"}
                 </Col>
-                <Col>
+                <Col md={9} sm={20}>
                     <Form.Item
                         {...field} 
                         name={[field.name, "range"]} 
@@ -57,15 +59,14 @@ const SpecialTimeEntry = (props) => {
                             required: isOpen,
                             message: "Please select the time"
                         }]}
+                        noStyle
                     >
-                        <RangePicker minuteStep={15} format={format} use12Hours allowClear={false} />
+                        <RangePicker className={styles.rangePicker} minuteStep={15} format={format} use12Hours allowClear={false} />
                     </Form.Item>
                 </Col>
-                <Button icon={<PlusCircleOutlined />} onClick={()=>add()} hidden={!isOpen}></Button>
-                <Button icon={<DeleteOutlined />} onClick={()=>remove(field.name)} hidden={!isOpen}></Button>
+                    <Button className={styles.addBtn} icon={<PlusCircleOutlined style={{color: "#D84349"}} />} onClick={()=>add()} hidden={!isOpen}></Button>
+                    <Button className={styles.delBtn} icon={<DeleteOutlined style={{color: "#D84349"}} />} onClick={()=>remove(field.name)} hidden={!isOpen}></Button>
             </Row>
-
-        </div>
     );
 };
 

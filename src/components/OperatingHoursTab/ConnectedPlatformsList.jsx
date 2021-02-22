@@ -11,13 +11,13 @@ const ConnectedPlatformsList = () => {
       ];
 
     return (
-        <div style={{width: "90%"}}>
+        <div style={{width: "95%"}}>
             <Row style={{fontWeight: "500"}}>
                 Connected Platforms
             </Row>
             <Row>
             <List
-                style={{width: "90%", margin:"5% 0", borderRadius: "10px"}}
+                style={{width: "100%", margin:"5% 0 10% 0", borderRadius: "10px"}}
                 header={<div style={{color: "#A2A2A2"}}>Platforms</div>}
                 bordered
                 dataSource={data}

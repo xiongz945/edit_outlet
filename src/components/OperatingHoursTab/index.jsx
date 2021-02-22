@@ -55,7 +55,7 @@ const OperatingHoursTab = (props) => {
             <Row>
                 <ConnectedPlatformsList />
             </Row>
-            <Row justify="left">
+            <Row justify="start">
                 <Col xl={12} md={12} sm={24}>
                     <Form.Item>
                         <Button type="primary" htmlType="submit" className={styles.submitBtn}>Save</Button>
