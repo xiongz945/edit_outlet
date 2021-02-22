@@ -1,5 +1,6 @@
 import { initialHours } from '../utils/constants';
 import moment from 'moment';
+import {queryConnectedPlatforms, querySavedOutletInfo} from '../services/outlet';
 import { isEmpty } from 'lodash';
 
 const OutletModel = {
@@ -20,6 +21,13 @@ const OutletModel = {
         specialHoursForDelivery: {},
     },
     effects: {
+        *fetchSavedOutlet(_, {call, put}) {
+            const response = yield call(querySavedOutletInfo);
+            yield put({
+                type: 'saveOutlet',
+                payload: response,
+            });
+        },
         *fetchConnectedPlatforms(_, {call, put}) {
             const response = yield call(queryConnectedPlatforms);
             yield put({

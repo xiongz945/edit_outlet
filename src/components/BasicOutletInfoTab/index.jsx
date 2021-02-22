@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { message, Row, Col, Button, Form, Popconfirm } from 'antd';
 import { connect, history } from 'umi';
 import BasicInfo from './BasicInfo';
@@ -46,6 +46,16 @@ const BasicOutletInfoTab = (props) => {
         history.push('/');
     }
 
+    useEffect(()=> {
+        const { dispatch } = props;
+        dispatch({
+            type: 'outlet/fetchConnectedPlatforms'
+        });
+        // dispatch({
+        //     type: 'outlet/fetchSavedOutlet'
+        // });
+    }, []);
+
 
     return (
         <Form 
@@ -71,7 +81,7 @@ const BasicOutletInfoTab = (props) => {
                 <BasicInfo />
             </Row>
             <Row>
-                <ConnectedPlatformsGroup />
+                <ConnectedPlatformsGroup platforms={outlet.connectedPlatforms} />
             </Row>
             <Row style={{marginTop: "15%"}}>
                 <ServiceOptions form={form} options={options}/>

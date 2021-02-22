@@ -53,7 +53,7 @@ const OperatingHoursTab = (props) => {
                 />
             </Row>
             <Row>
-                <ConnectedPlatformsList />
+                <ConnectedPlatformsList platforms={outlet.connectedPlatforms} />
             </Row>
             <Row justify="start">
                 <Col xl={12} md={12} sm={24}>

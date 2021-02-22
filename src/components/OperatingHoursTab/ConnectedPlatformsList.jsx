@@ -1,14 +1,8 @@
 import React from 'react';
 import { Row, List, Card } from 'antd';
 
-const ConnectedPlatformsList = () => {
-    const data = [
-        'Grab',
-        'FoodPanda',
-        'Google',
-        'Facebook',
-        'Deliveroo',
-      ];
+const ConnectedPlatformsList = (props) => {
+    const {platforms} = props;
 
     return (
         <div style={{width: "95%"}}>
@@ -20,7 +14,7 @@ const ConnectedPlatformsList = () => {
                 style={{width: "100%", margin:"5% 0 10% 0", borderRadius: "10px"}}
                 header={<div style={{color: "#A2A2A2"}}>Platforms</div>}
                 bordered
-                dataSource={data}
+                dataSource={platforms}
                 renderItem={item => (
                     <List.Item>
                         {item}
