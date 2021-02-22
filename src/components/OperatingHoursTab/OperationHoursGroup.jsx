@@ -6,6 +6,15 @@ const { TabPane } = Tabs;
 
 const OperationHoursGroup = (props) => {
   const { dineInEntries, deliveryEntries, form } = props;
+
+  const onCopyFromDeliverySwitch = value => {
+    console.log("Switch", value);
+  };
+
+  const onCopyFromDineInSwitch = value => {
+    console.log("Switch", value);
+  };
+
   return (
     <div>
       <Row style={{fontWeight: "500"}}>Operation Hours</Row>
@@ -15,7 +24,7 @@ const OperationHoursGroup = (props) => {
             <Row style={{margin:"2% 0 10% 0"}}>
                 <Col span={15} >Copy hours data from the delivery</Col>
                 <Col span={9}>
-                  <Switch />
+                  <Switch onChange={value => onCopyFromDeliverySwitch(value)}/>
                 </Col>
             </Row>
             {dineInEntries.map(entry => (
@@ -28,7 +37,7 @@ const OperationHoursGroup = (props) => {
           <TabPane tab="Delivery" key="2">
             <Row style={{margin:"2% 0 10% 0"}}>
                 <Col span={15}>Copy hours data from the dine-in</Col>
-                <Col span={9}><Switch /></Col>
+                <Col span={9}><Switch onChange={value => onCopyFromDineInSwitch(value)} /></Col>
             </Row>
             {deliveryEntries.map(entry => (
               <Row key={entry.day}>

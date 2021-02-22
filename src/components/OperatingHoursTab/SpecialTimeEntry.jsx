@@ -64,8 +64,8 @@ const SpecialTimeEntry = (props) => {
                         <RangePicker className={styles.rangePicker} minuteStep={15} format={format} use12Hours allowClear={false} />
                     </Form.Item>
                 </Col>
-                    <Button className={styles.addBtn} icon={<PlusCircleOutlined style={{color: "#D84349"}} />} onClick={()=>add()} hidden={!isOpen}></Button>
-                    <Button className={styles.delBtn} icon={<DeleteOutlined style={{color: "#D84349"}} />} onClick={()=>remove(field.name)} hidden={!isOpen}></Button>
+                    <Button className={styles.addBtn} icon={<PlusCircleOutlined style={{color: "#D84349"}} />} onClick={()=>add()} ></Button>
+                    <Button className={styles.delBtn} icon={<DeleteOutlined style={{color: "#D84349"}} />} onClick={()=>remove(field.name)} ></Button>
             </Row>
     );
 };

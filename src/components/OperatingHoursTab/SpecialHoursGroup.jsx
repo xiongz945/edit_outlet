@@ -12,11 +12,19 @@ const SpecialHoursGroup = (props) => {
   const { form, dineInEntries, deliveryEntries } = props;
 
   const onCopyFromDeliverySwitch = value => {
-    console.log("Copy from delivery", value);
+    if (value) {
+      console.log(form.getFieldValue(["special", "delivery"]));
+      const records = form.getFieldValue(["special", "delivery"]);
+      form.setFieldsValue({special:{dinein:records}});
+    }
   };
 
   const onCopyFromDineInSwitch = value => {
-    console.log("Copy from dine-in", value);
+    if (value) {
+      console.log(form.getFieldValue(["special", "dinein"]));
+      const records = form.getFieldValue(["special", "dinein"]);
+      form.setFieldsValue({special:{delivery:records}});
+    }
   };
   
   useEffect(() => {
@@ -80,18 +88,16 @@ const SpecialHoursGroup = (props) => {
           <TabPane tab="Delivery" key="2">
             <Row style={{margin:"2% 0 10% 0"}}>
                 <Col span={15}>Copy hours data from the dine-in</Col>
-                <Col span={9}><Switch  onChange={value => onCopyFromDineInSwitch(value)} /></Col>   
+                <Col span={9}><Switch onChange={value => onCopyFromDineInSwitch(value)} /></Col>   
             </Row>
             <Form.List name={["special", "delivery"]}>
               {(fields, { add, remove }) => (
                 <>
                   {fields.length > 0 ? null : <Row><Button icon={<PlusCircleOutlined />} onClick={()=>add()}>Add New Special Hours</Button></Row>}
                   {fields.map(field => (
-                    <Row key={field.key}>
-                      <Form.Item>
-                        <SpecialTimeEntry form={form} add={add} remove={remove} field={field}/>
-                      </Form.Item>
-                    </Row>
+                    <Form.Item key={field.key}>
+                      <SpecialTimeEntry form={form} add={add} remove={remove} field={field}/>
+                    </Form.Item>
                   ))}
                 </>
               )}
