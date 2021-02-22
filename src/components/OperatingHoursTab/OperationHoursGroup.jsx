@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Switch, Tabs, Form } from 'antd';
+import { Row, Col, Switch, Tabs } from 'antd';
 import TimeEntry from './TimeEntry';
 
 const { TabPane } = Tabs;
@@ -8,11 +8,27 @@ const OperationHoursGroup = (props) => {
   const { dineInEntries, deliveryEntries, form } = props;
 
   const onCopyFromDeliverySwitch = value => {
-    console.log("Switch", value);
+    if (value) {
+      console.log(form.getFieldValue(["operation"]));
+      const operation = form.getFieldValue(["operation"]);
+      for (const day in operation) {
+        if (operation[day].hasOwnProperty("delivery")) {
+          form.setFieldsValue({operation: {[day]: {dinein: operation[day]["delivery"]}}});
+        }
+      }
+    }
   };
 
   const onCopyFromDineInSwitch = value => {
-    console.log("Switch", value);
+    if (value) {
+      console.log(form.getFieldValue(["operation"]));
+      const operation = form.getFieldValue(["operation"]);
+      for (const day in operation) {
+        if (operation[day].hasOwnProperty("dinein")) {
+          form.setFieldsValue({operation: {[day]: {delivery: operation[day]["dinein"]}}});
+        }
+      }
+    }
   };
 
   return (
