@@ -84,7 +84,7 @@ const OutletModel = {
 
             if (special.hasOwnProperty("delivery")) {
                 const { delivery } = special;
-                if (typeof delivery !== undefined) {
+                if (typeof delivery !== "undefined") {
                     for (const entry in delivery) {
                         const day = delivery[entry].date.format('YYYY-MM-DD');
                         specialHoursForDelivery[day] = {
@@ -101,7 +101,7 @@ const OutletModel = {
             }
             if (special.hasOwnProperty("dinein")) {
                 const { dinein } = special;
-                if (typeof dinein !== undefined) {
+                if (typeof dinein !== "undefined") {
                     for (const entry in dinein) {
                         const day = dinein[entry].date.format('YYYY-MM-DD');
                         specialHoursForDineIn[day] = {

@@ -10,15 +10,20 @@ const TimeEntry = (props) => {
     const [isOpen, setIsOpen] = useState(entry.isOpen);
     useEffect(() => {
         const records = [];
-        for (const hour of entry.hours) {
-            const start = moment(hour[0], 'hh:mm A');
-            const end = moment(hour[1], 'HH:mm A');
-            if (records.length === 0) {
-                records.push({isopen: entry.isOpen, range: [start, end]});
-            } else {
-                records.push({range: [start, end]});
+        if (entry.hours.length > 0) {
+            for (const hour of entry.hours) {
+                const start = moment(hour[0], 'hh:mm A');
+                const end = moment(hour[1], 'HH:mm A');
+                if (records.length === 0) {
+                    records.push({isopen: entry.isOpen, range: [start, end]});
+                } else {
+                    records.push({range: [start, end]});
+                }
             }
+        } else {
+            records.push({isopen: entry.isOpen, range:[]});
         }
+        
         form.setFieldsValue({"operation": {[entry.day]: {[hourType]: records}}});
     }, [])
 

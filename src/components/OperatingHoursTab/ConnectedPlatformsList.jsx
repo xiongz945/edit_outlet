@@ -11,14 +11,14 @@ const ConnectedPlatformsList = () => {
       ];
 
     return (
-        <div>
-            <Row>
+        <div style={{width: "90%"}}>
+            <Row style={{fontWeight: "500"}}>
                 Connected Platforms
             </Row>
             <Row>
-            <Card>
             <List
-                header={<div>Platforms</div>}
+                style={{width: "90%", margin:"5% 0", borderRadius: "10px"}}
+                header={<div style={{color: "#A2A2A2"}}>Platforms</div>}
                 bordered
                 dataSource={data}
                 renderItem={item => (
@@ -26,7 +26,6 @@ const ConnectedPlatformsList = () => {
                         {item}
                     </List.Item>
                 )} />
-            </Card>
             </Row>
         </div>
     )

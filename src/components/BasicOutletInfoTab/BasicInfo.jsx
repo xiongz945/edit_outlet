@@ -1,31 +1,31 @@
 import React from 'react';
 import { Input, Row, Col, Form } from 'antd';
-
+import styles from './BasicInfo.less';
 
 const BasicInfoForm = () => {
     return (
-        <div>
+        <div style={{width: "100%"}}>
             <Row>
-                <Col>
+                <Col xl={12} sm={24}>
                     <Form.Item name="brand-name" label="Brand Name" rules={[{required: true}]}>
-                        <Input id="brand-name" placeholder="Brand Name" />
+                        <Input className={styles.brandName} id="brand-name" placeholder="Brand Name" />
                     </Form.Item>
                 </Col>
-                <Col>
+                <Col xl={12} sm={24}>
                     <Form.Item name="outlet-name" label="Outlet Name" rules={[{required: true}]}>
-                        <Input placeholder="Outlet Name"/>
+                        <Input className={styles.outletName} placeholder="Outlet Name"/>
                     </Form.Item>
                 </Col>
             </Row>
             <Row>
-                <Col>
+                <Col xl={12} sm={24}>
                     <Form.Item name="address" label="Address" rules={[{required: true}]}>
-                        <Input placeholder="Address" />
+                        <Input className={styles.address} placeholder="Address" />
                     </Form.Item>
                 </Col>
-                <Col>
+                <Col xl={12} sm={24}>
                     <Form.Item name="phone-number" label="Phone Number" rules={[{required: true}]}>
-                        <Input placeholder="Phone Number" type="tel"/>
+                        <Input className={styles.phoneNumber} placeholder="Phone Number" type="tel" />
                     </Form.Item>
                 </Col>
             </Row>

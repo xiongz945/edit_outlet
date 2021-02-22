@@ -8,7 +8,7 @@ const OperationHoursGroup = (props) => {
   const { dineInEntries, deliveryEntries, form } = props;
   return (
     <div>
-      <Row>Operation Hours</Row>
+      <Row style={{fontWeight: "500"}}>Operation Hours</Row>
       <Row>
         <Tabs defaultActiveKey="1">
           <TabPane tab="Dine-in" key="1">

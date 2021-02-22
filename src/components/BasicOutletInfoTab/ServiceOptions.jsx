@@ -6,8 +6,8 @@ const ServiceOptions = ({form, options}) => {
 
     return (
         <>
-            <Row>Service Options</Row>
-            <Divider />
+            <Row style={{fontWeight:"500"}}>Service Options</Row>
+            <Divider style={{margin:"2% 0", borderColor:"#636978"}}  />
             <Form.Item>
             <Row>
                 <Col>

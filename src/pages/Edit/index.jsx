@@ -1,12 +1,13 @@
 import React from 'react';
 import { Row } from 'antd';
 import EditTab from '../../components/EditTab';
+import styles from './index.less';
 
 const Edit = () => {
     return (
-        <div>
+        <div className={styles.main}>
             <Row>
-                <h1>Edit Outlet</h1>
+                <h1><b>Edit Outlet</b></h1>
             </Row>
             <Row>
                 <EditTab />

@@ -4,6 +4,7 @@ import { history, connect } from 'umi';
 import OperationHoursGroup from './OperationHoursGroup';
 import SpecialHoursGroup from './SpecialHoursGroup';
 import ConnectedPlatformsList from "./ConnectedPlatformsList";
+import styles from './index.less';
 
 const OperatingHoursTab = (props) => {
     const [ form ] = Form.useForm();
@@ -47,25 +48,27 @@ const OperatingHoursTab = (props) => {
             <Row>
                 <SpecialHoursGroup 
                     form={form}
+                    dineInEntries={outlet.specialHoursForDineIn}
+                    deliveryEntries={outlet.specialHoursForDelivery}
                 />
             </Row>
             <Row>
                 <ConnectedPlatformsList />
             </Row>
-            <Row>
-                <Col>
+            <Row justify="left">
+                <Col xl={12} md={12} sm={24}>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit">Save</Button>
+                        <Button type="primary" htmlType="submit" className={styles.submitBtn}>Save</Button>
                     </Form.Item>
                 </Col>
-                <Col>
+                <Col xl={12} md={12} sm={24}>
                     <Popconfirm
                         title="Cancel without saving?"
                         onConfirm={confirm}
                         okText="Yes"
                         cancelText="No"
                     >
-                        <Button type="default">Cancel</Button>
+                        <Button type="default" className={styles.cancelBtn}>Cancel</Button>
                     </Popconfirm>
                 </Col>
             </Row>

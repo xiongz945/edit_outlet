@@ -5,6 +5,7 @@ import BasicInfo from './BasicInfo';
 import ConnectedPlatformsGroup from './ConnectedPlatformsGroup';
 import ServiceOptions from './ServiceOptions';
 import { options } from '../../utils/constants';
+import styles from './index.less';
 
 const onServiceOptionsChange = (changedFields, form) => {
     const { name, value } = changedFields[0];
@@ -60,6 +61,7 @@ const BasicOutletInfoTab = (props) => {
                     "options": outlet.serviceOptions.options
                 }
             }} 
+            requiredMark={false}
             onFieldsChange={
                 (changedFields,_) => onServiceOptionsChange(changedFields, form)
             }
@@ -71,23 +73,23 @@ const BasicOutletInfoTab = (props) => {
             <Row>
                 <ConnectedPlatformsGroup />
             </Row>
-            <Row>
+            <Row style={{marginTop: "15%"}}>
                 <ServiceOptions form={form} options={options}/>
             </Row>
-            <Row>
-                <Col>
+            <Row justify="left">
+                <Col xl={12} md={12} sm={24}>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit">Save</Button>
+                        <Button type="primary" htmlType="submit" className={styles.submitBtn}>Save</Button>
                     </Form.Item>
                 </Col>
-                <Col>
+                <Col xl={12} md={12} sm={24}>
                     <Popconfirm
                         title="Cancel without saving?"
                         onConfirm={confirm}
                         okText="Yes"
                         cancelText="No"
                     >
-                        <Button type="default">Cancel</Button>
+                        <Button type="default" className={styles.cancelBtn}>Cancel</Button>
                     </Popconfirm>
                 </Col>
             </Row>

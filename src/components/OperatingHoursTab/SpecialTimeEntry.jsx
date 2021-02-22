@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, DatePicker, TimePicker, Switch, Button, Form } from 'antd';
 import  { PlusCircleOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const SpecialTimeEntry = (props) => {
-    const { add, remove, field } = props;
+    const { add, remove, field, form } = props;
     const [ isOpen, setIsOpen ] = useState(true);
     const { RangePicker } = TimePicker;
     const format = "hh:mm A";
 
+
     const onOpenSwitchChange = (value) => {
         setIsOpen(value);
     }
+
+    useEffect(() => {
+        const isOpenStored = form.getFieldValue([field.name, "isopen"]);
+        console.log(field);
+        setIsOpen((typeof isOpenStored) === "undefined" ? true : isOpenStored)
+    }, []);
 
     return (
         <div>
