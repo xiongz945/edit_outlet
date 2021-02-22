@@ -1,11 +1,10 @@
 import React from 'react';
-import { Row, Col, Button, Form } from 'antd';
-import { Link, connect } from 'umi';
+import { message, Row, Col, Button, Form, Popconfirm } from 'antd';
+import { connect, history } from 'umi';
 import BasicInfo from './BasicInfo';
 import ConnectedPlatformsGroup from './ConnectedPlatformsGroup';
 import ServiceOptions from './ServiceOptions';
 import { options } from '../../utils/constants';
-// const options = ['Dine-in', 'Delivery', 'Takeout'];
 
 const onServiceOptionsChange = (changedFields, form) => {
     const { name, value } = changedFields[0];
@@ -38,7 +37,15 @@ const BasicOutletInfoTab = (props) => {
             type: 'outlet/saveOutlet',
             payload: values
         });
+        const key = "success";
+        message.success({content: "Outlet information has been saved", key});
     }
+
+    const confirm = _ => {
+        history.push('/');
+    }
+
+
     return (
         <Form 
             form={form} 
@@ -74,9 +81,14 @@ const BasicOutletInfoTab = (props) => {
                     </Form.Item>
                 </Col>
                 <Col>
-                    <Link to='/'>
+                    <Popconfirm
+                        title="Cancel without saving?"
+                        onConfirm={confirm}
+                        okText="Yes"
+                        cancelText="No"
+                    >
                         <Button type="default">Cancel</Button>
-                    </Link>
+                    </Popconfirm>
                 </Col>
             </Row>
         </Form>

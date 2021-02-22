@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, List } from 'antd';
+import { Row, List, Card } from 'antd';
 
 const ConnectedPlatformsList = () => {
     const data = [
@@ -16,6 +16,7 @@ const ConnectedPlatformsList = () => {
                 Connected Platforms
             </Row>
             <Row>
+            <Card>
             <List
                 header={<div>Platforms</div>}
                 bordered
@@ -25,6 +26,7 @@ const ConnectedPlatformsList = () => {
                         {item}
                     </List.Item>
                 )} />
+            </Card>
             </Row>
         </div>
     )

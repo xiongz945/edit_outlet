@@ -5,8 +5,7 @@ import TimeEntry from './TimeEntry';
 const { TabPane } = Tabs;
 
 const OperationHoursGroup = (props) => {
-  const { dineInEntries, deliveryEntries } = props;
-  console.log(dineInEntries);
+  const { dineInEntries, deliveryEntries, form } = props;
   return (
     <div>
       <Row>Operation Hours</Row>
@@ -19,19 +18,19 @@ const OperationHoursGroup = (props) => {
             </Row>
             {dineInEntries.map(entry => (
               <Row key={entry.day}>
-                <TimeEntry entry={entry} />
+                  <TimeEntry entry={entry} hourType="dinein" form={form}/>
               </Row>
             ))}
+
           </TabPane>
           <TabPane tab="Delivery" key="2">
-            {/* <TimeTable tabName={'Delivery'} /> */}
             <Row>
                 <Col>Copy hours data from the dine-in</Col>
                 <Switch />
             </Row>
-            {dineInEntries.map(entry => (
+            {deliveryEntries.map(entry => (
               <Row key={entry.day}>
-                <TimeEntry entry={entry} />
+                <TimeEntry entry={entry} hourType="delivery" form={form}/>
               </Row>
             ))}
           </TabPane>

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Row, Col, Button, Form } from "antd";
-import { Link, connect } from 'umi';
+import { Row, Col, Button, Form, Popconfirm, message } from "antd";
+import { history, connect } from 'umi';
 import OperationHoursGroup from './OperationHoursGroup';
 import SpecialHoursGroup from './SpecialHoursGroup';
 import ConnectedPlatformsList from "./ConnectedPlatformsList";
@@ -15,22 +15,39 @@ const OperatingHoursTab = (props) => {
             type: 'outlet/saveOperatingHours',
             payload: values
         });
+        message.success({content: "Operating hours have been saved", key:"saveSuccess"});
+    }
+
+    const onSaveFailed = (values) => {
+        message.error({content:"Please fill in all missing data",key:"saveError"});
+    }
+
+    const confirm = _ => {
+        history.push('/');
+    }
+
+    const onValuesChange = (changedValues) => {
+        console.log(changedValues);
     }
 
     return (
         <Form
             form={form}
-            layout="vertical"
             onFinish={onSave}
+            onFinishFailed={onSaveFailed}
+            onValuesChange={onValuesChange}
         >
             <Row>
                 <OperationHoursGroup 
                     dineInEntries={outlet.operatingHoursForDineIn}
-                    deliveryEntries={outlet.operatingHoursForDelivery} 
+                    deliveryEntries={outlet.operatingHoursForDelivery}
+                    form={form} 
                 />
             </Row>
             <Row>
-                <SpecialHoursGroup />
+                <SpecialHoursGroup 
+                    form={form}
+                />
             </Row>
             <Row>
                 <ConnectedPlatformsList />
@@ -42,9 +59,14 @@ const OperatingHoursTab = (props) => {
                     </Form.Item>
                 </Col>
                 <Col>
-                    <Link to='/'>
+                    <Popconfirm
+                        title="Cancel without saving?"
+                        onConfirm={confirm}
+                        okText="Yes"
+                        cancelText="No"
+                    >
                         <Button type="default">Cancel</Button>
-                    </Link>
+                    </Popconfirm>
                 </Col>
             </Row>
         </Form>
