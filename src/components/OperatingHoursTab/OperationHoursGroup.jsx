@@ -13,7 +13,7 @@ const OperationHoursGroup = (props) => {
       const operation = form.getFieldValue(["operation"]);
       for (const day in operation) {
         if (operation[day].hasOwnProperty("delivery")) {
-          form.setFieldsValue({operation: {[day]: {dinein: operation[day]["delivery"]}}});
+          form.setFieldsValue({operation: {[day]: {dinein: operation[day].delivery}}});
         }
       }
     }
@@ -25,7 +25,7 @@ const OperationHoursGroup = (props) => {
       const operation = form.getFieldValue(["operation"]);
       for (const day in operation) {
         if (operation[day].hasOwnProperty("dinein")) {
-          form.setFieldsValue({operation: {[day]: {delivery: operation[day]["dinein"]}}});
+          form.setFieldsValue({operation: {[day]: {delivery: operation[day].dinein}}});
         }
       }
     }

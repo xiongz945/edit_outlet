@@ -18,7 +18,7 @@ const onServiceOptionsChange = (changedFields, form) => {
         }
     } else if (name && name.includes("service-options") && name.includes("all")) {
         if (value === true) {
-            form.setFieldsValue({ 'service-options':{options: options}} );
+            form.setFieldsValue({ 'service-options':{options}} );
         }
         else {
             form.setFieldsValue({ 'service-options':{options: []}} );
@@ -27,7 +27,7 @@ const onServiceOptionsChange = (changedFields, form) => {
 }
 
 
-const BasicOutletInfoTab = (props) => {
+export const BasicOutletInfoTab = (props) => {
     const [ form ] = Form.useForm();
     const { outlet } = props;
 
